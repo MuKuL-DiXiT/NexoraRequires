@@ -178,9 +178,9 @@ export default function CartPage() {
                           
                           <div className="text-right">
                             <p className="text-lg font-medium text-black">
-                              ₹{cartItem.item.price * cartItem.quantity}
+                              ${cartItem.item.price * cartItem.quantity}
                             </p>
-                            <p className="text-sm text-gray-600">₹{cartItem.item.price} each</p>
+                            <p className="text-sm text-gray-600">${cartItem.item.price} each</p>
                           </div>
                         </div>
                         
@@ -205,7 +205,7 @@ export default function CartPage() {
                 <div className="space-y-4">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Items ({itemsCount})</span>
-                    <span className="text-black font-medium">₹{total}</span>
+                    <span className="text-black font-medium">${total}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Shipping</span>
@@ -214,7 +214,7 @@ export default function CartPage() {
                   <div className="border-t border-gray-200 pt-4">
                     <div className="flex justify-between">
                       <span className="text-lg font-medium text-black">Total</span>
-                      <span className="text-lg font-medium text-black">₹{total}</span>
+                      <span className="text-lg font-medium text-black">${total}</span>
                     </div>
                   </div>
                 </div>

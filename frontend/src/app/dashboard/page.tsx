@@ -83,7 +83,8 @@ export default function Dashboard() {
               <div className="w-8 h-8 bg-black rounded flex items-center justify-center">
                 <span className="text-white font-bold text-sm">A</span>
               </div>
-              <span className="text-xl font-medium text-black tracking-tight">AstrapeRequires</span>
+              <span className="text-xl font-medium text-black tracking-tight hidden md:inline">AstrapeRequires</span>
+              <span className="text-xl font-medium text-black tracking-tight md:hidden">AR</span>
             </Link>
             <div className="flex items-center space-x-6">
               <Link href="/items" className="text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase">
