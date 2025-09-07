@@ -50,8 +50,9 @@ export default function LoginForm() {
       setUser(data.safeUser);
       // Redirect to home
       window.location.replace('/');
-    } catch (err: any) {
-      alert(err.message);
+    } catch (err: unknown) {
+      const error = err as Error;
+      alert(error.message);
     } finally {
       setLoading(false);
     }
