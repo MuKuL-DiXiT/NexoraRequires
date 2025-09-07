@@ -17,6 +17,7 @@ const userRoutes = require("./routes/user");
 const itemRoutes = require("./routes/itemRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const cors = require('cors');
 
 const app = express();
 
