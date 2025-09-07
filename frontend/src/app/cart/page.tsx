@@ -162,15 +162,15 @@ export default function CartPage() {
                             <button
                               onClick={() => handleQuantityChange(cartItem.item._id, cartItem.quantity - 1)}
                               disabled={cartItem.quantity <= 1 || isLoading}
-                              className="w-8 h-8 border border-gray-300 hover:border-black disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-sm transition-colors"
+                              className="w-8 h-8 border border-gray-300 text-black hover:border-black disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center text-sm transition-colors"
                             >
                               −
                             </button>
-                            <span className="w-8 text-center font-medium">{cartItem.quantity}</span>
+                            <span className="w-8 text-center text-black font-medium">{cartItem.quantity}</span>
                             <button
                               onClick={() => handleQuantityChange(cartItem.item._id, cartItem.quantity + 1)}
                               disabled={isLoading}
-                              className="w-8 h-8 border border-gray-300 hover:border-black disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center text-sm transition-colors"
+                              className="w-8 h-8 border border-gray-300 hover:border-black text-black disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center text-sm transition-colors"
                             >
                               +
                             </button>

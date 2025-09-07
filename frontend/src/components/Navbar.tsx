@@ -55,7 +55,9 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden bg-white border-b border-gray-100 transition-all duration-300 ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+      <div
+        className={`md:hidden bg-white border-b border-gray-100 fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
+      >
         <div className="px-4 py-6 space-y-4">
           <Link href="/items" className="block text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase" onClick={() => setIsOpen(false)}>
             Shop
