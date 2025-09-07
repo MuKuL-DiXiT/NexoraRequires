@@ -15,5 +15,8 @@
     "url": "https://github.com/MuKuL-DiXiT/AstrapeRequires.git"
   },
   "author": "MuKuL DiXiT",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "multer-storage-cloudinary": "^4.0.0"
+  }
 }
