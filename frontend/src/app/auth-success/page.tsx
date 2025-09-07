@@ -36,7 +36,7 @@ export default function AuthSuccess() {
 
           // Fetch user data using the token
           console.log('Fetching user data from API...');
-          const response = await fetch('http://localhost:3001/user', {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
             headers: {
               'Authorization': `Bearer ${accessToken}`,
             },

@@ -28,7 +28,7 @@ export default function Dashboard() {
   const fetchUserData = async () => {
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await fetch('http://localhost:3001/user', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -154,27 +154,27 @@ export default function Dashboard() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
           <div className="bg-white border border-gray-200 p-6 text-center">
             <div className="text-2xl font-light text-black mb-1">
-              {isAdmin ? '--' : cartItemsCount}
+              {isAdmin ? '∞' : cartItemsCount}
             </div>
             <div className="text-xs text-gray-600 uppercase tracking-wider">
               {isAdmin ? 'Products' : 'Cart Items'}
             </div>
           </div>
           <div className="bg-white border border-gray-200 p-6 text-center">
-            <div className="text-2xl font-light text-black mb-1">--</div>
+            <div className="text-2xl font-light text-black mb-1">0</div>
             <div className="text-xs text-gray-600 uppercase tracking-wider">
               {isAdmin ? 'Categories' : 'Orders'}
             </div>
           </div>
           <div className="bg-white border border-gray-200 p-6 text-center">
-            <div className="text-2xl font-light text-black mb-1">--</div>
+            <div className="text-2xl font-light text-black mb-1">0</div>
             <div className="text-xs text-gray-600 uppercase tracking-wider">
               {isAdmin ? 'Users' : 'Wishlist'}
             </div>
           </div>
           <div className="bg-white border border-gray-200 p-6 text-center">
             <div className="text-2xl font-light text-black mb-1">
-              {user.role === 'admin' ? '--' : '--'}
+              {user.role === 'admin' ? '∞' : '5'}
             </div>
             <div className="text-xs text-gray-600 uppercase tracking-wider">
               {isAdmin ? 'Access' : 'Reviews'}
@@ -183,10 +183,10 @@ export default function Dashboard() {
         </div>
 
         {/* Action Cards */}
-        <div className="flex justify-evenly gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           <Link 
             href="/items"
-            className="group bg-white border w-1/3 border-gray-200 p-8 hover:border-black transition-colors"
+            className="group bg-white border border-gray-200 p-8 hover:border-black transition-colors"
           >
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-black transition-colors">
@@ -206,7 +206,7 @@ export default function Dashboard() {
           {!isAdmin && (
             <Link 
               href="/cart"
-              className="group bg-white border  border-gray-200 p-8 hover:border-black transition-colors"
+              className="group bg-white border border-gray-200 p-8 hover:border-black transition-colors"
             >
               <div className="flex flex-col items-center text-center">
                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-black transition-colors">
@@ -220,7 +220,7 @@ export default function Dashboard() {
             </Link>
           )}
 
-          {/* {isAdmin && (
+          {isAdmin && (
             <Link 
               href="/admin"
               className="group bg-white border border-gray-200 p-8 hover:border-black transition-colors"
@@ -236,11 +236,11 @@ export default function Dashboard() {
                 <p className="text-gray-600 font-light text-sm">Manage items & users</p>
               </div>
             </Link>
-          )} */}
+          )}
 
           <Link 
-            href="/"
-            className="group bg-white border w-1/3 border-gray-200 p-8 hover:border-black transition-colors"
+            href="/home"
+            className="group bg-white border border-gray-200 p-8 hover:border-black transition-colors"
           >
             <div className="flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-black transition-colors">

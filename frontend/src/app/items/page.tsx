@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { useCartStore } from '../../stores/cartStore';
 import { useUserStore } from '../../stores/userStore';
-import { Delete, Trash2, Trash2Icon } from 'lucide-react';
-import { IoRemove } from 'react-icons/io5';
 
 interface Item {
   _id: string;
@@ -42,7 +40,7 @@ export default function ItemsPage() {
   const fetchItems = async () => {
     try {
       setLoading(true);
-      const response = await fetch('http://localhost:3001/items');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/items`);
       if (response.ok) {
         const data = await response.json();
         setItems(data.items || []);
@@ -57,7 +55,7 @@ export default function ItemsPage() {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch('http://localhost:3001/categories');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`);
       if (response.ok) {
         const data = await response.json();
         setCategories(data.categories || []);
@@ -109,7 +107,7 @@ export default function ItemsPage() {
     e.preventDefault();
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await fetch('http://localhost:3001/items', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/items`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -142,7 +140,7 @@ export default function ItemsPage() {
 
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await fetch(`http://localhost:3001/items/${editingItem._id}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/items/${editingItem._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -173,7 +171,7 @@ export default function ItemsPage() {
     if (window.confirm('Are you sure you want to delete this item?')) {
       try {
         const token = localStorage.getItem('accessToken');
-        const response = await fetch(`http://localhost:3001/items/${itemId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/items/${itemId}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -357,15 +355,15 @@ export default function ItemsPage() {
                     <div className="flex space-x-2 pt-2">
                       <button
                         onClick={() => startEdit(item)}
-                        className="flex-1 py-2  font-medium tracking-wide  border border-gray-300 text-gray-600 hover:border-black hover:text-black transition-colors"
+                        className="flex-1 py-2 text-xs font-medium tracking-wide uppercase border border-gray-300 text-gray-600 hover:border-black hover:text-black transition-colors"
                       >
                         Edit
                       </button>
                       <button
                         onClick={() => handleDeleteItem(item._id)}
-                        className="flex justify-around gap-3 items-center py-1 px-2  font-medium border border-gray-300 text-gray-600 hover:border-black hover:text-black transition-colors "
+                        className="flex-1 py-2 text-xs font-medium tracking-wide uppercase bg-red-600 text-white hover:bg-red-700 transition-colors"
                       >
-                        Remove <span className='text-red-400 mb-1'><Trash2/></span>
+                        Delete
                       </button>
                     </div>
                   ) : (

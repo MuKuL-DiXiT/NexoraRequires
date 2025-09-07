@@ -30,7 +30,7 @@ export default function SignupForm() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     clearUser();
-    window.location.href = 'http://localhost:3001/login/google';
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/login/google`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -51,7 +51,7 @@ export default function SignupForm() {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/signup', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/signup`, {
         method: 'POST',
         body: formData,
         credentials: 'include',

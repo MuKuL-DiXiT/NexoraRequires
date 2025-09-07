@@ -23,7 +23,7 @@ export default function AdminPage() {
 
   const fetchItems = async () => {
     try {
-      const response = await fetch('http://localhost:3001/items');
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/items`);
       if (response.ok) {
         const data = await response.json();
         setItems(data.items || []);
@@ -52,7 +52,7 @@ export default function AdminPage() {
 
     try {
       const token = localStorage.getItem('accessToken');
-      const response = await fetch('http://localhost:3001/items', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/items`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export default function AdminPage() {
     if (window.confirm('Are you sure you want to delete this item?')) {
       try {
         const token = localStorage.getItem('accessToken');
-        const response = await fetch(`http://localhost:3001/items/${itemId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/items/${itemId}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
