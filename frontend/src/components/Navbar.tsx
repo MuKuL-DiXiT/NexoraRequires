@@ -9,7 +9,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="flex justify-between items-center px-4 sm:px-8 py-6 bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50">
+      <nav className="flex justify-between items-center px-4 sm:px-8 py-6 bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-10">
         <Link href="/" className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-black rounded flex items-center justify-center">
             <span className="text-white font-bold text-sm">A</span>
