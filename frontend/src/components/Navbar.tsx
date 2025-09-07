@@ -48,15 +48,15 @@ export default function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           className="md:hidden flex flex-col space-y-1 p-2"
         >
-          <span className={`block w-5 h-0.5 bg-black transition-transform ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-          <span className={`block w-5 h-0.5 bg-black transition-opacity ${isOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`block w-5 h-0.5 bg-black transition-transform ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+          <span className={`block w-5 h-0.5 z-50  bg-black transition-transform ${isOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+          <span className={`block w-5 h-0.5 z-50 bg-black transition-opacity ${isOpen ? 'opacity-0' : ''}`}></span>
+          <span className={`block w-5 h-0.5 z-50 bg-black transition-transform ${isOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
         </button>
       </nav>
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden bg-white border-b border-gray-100 fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
+        className={`md:hidden bg-white border-b border-gray-100 fixed top-0 left-0 w-full z-30 transition-all duration-300 ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}
       >
         <div className="px-4 py-6 space-y-4">
           <Link href="/items" className="block text-gray-600 hover:text-black transition-colors text-sm font-medium tracking-wide uppercase" onClick={() => setIsOpen(false)}>
