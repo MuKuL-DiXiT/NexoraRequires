@@ -34,7 +34,7 @@ interface CartStore {
 
 const apiCall = async (url: string, options: RequestInit = {}) => {
   const token = localStorage.getItem('accessToken');
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${url}`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
