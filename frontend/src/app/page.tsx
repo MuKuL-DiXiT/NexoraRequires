@@ -61,7 +61,7 @@ export default function LandingPage() {
                 <span className="text-2xl">�</span>
               </div>
               <h3 className="text-xl font-medium mb-6 text-black">Exclusive Collections</h3>
-              <p className="text-gray-600 font-light leading-relaxed">Unique and limited edition items you won't find anywhere else.</p>
+              <p className="text-gray-600 font-light leading-relaxed">Unique and limited edition items you won&apos;t find anywhere else.</p>
             </div>
           </div>
         </div>

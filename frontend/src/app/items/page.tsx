@@ -91,7 +91,7 @@ export default function ItemsPage() {
     try {
       await addToCart(itemId, 1);
       alert('Item added to cart!');
-    } catch (error) {
+    } catch {
       alert('Failed to add item to cart');
     }
   };
@@ -129,7 +129,7 @@ export default function ItemsPage() {
         const error = await response.json();
         alert(error.message || 'Failed to create item');
       }
-    } catch (error) {
+    } catch {
       alert('Error creating item');
     }
   };
@@ -162,7 +162,7 @@ export default function ItemsPage() {
         const error = await response.json();
         alert(error.message || 'Failed to update item');
       }
-    } catch (error) {
+    } catch {
       alert('Error updating item');
     }
   };
@@ -185,7 +185,7 @@ export default function ItemsPage() {
         } else {
           alert('Failed to delete item');
         }
-      } catch (error) {
+      } catch {
         alert('Error deleting item');
       }
     }

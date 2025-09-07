@@ -5,7 +5,7 @@ import { useUserStore } from '../stores/userStore';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, isLoggedIn } = useUserStore();
+  const { isLoggedIn } = useUserStore();
 
   return (
     <>
