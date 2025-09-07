@@ -1,0 +1,19 @@
+{
+  "name": "astrape-requires",
+  "version": "1.0.0",
+  "description": "AstrapeRequires E-commerce Platform",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "cd server && npm start",
+    "build": "cd server && npm install",
+    "dev": "cd server && npm run dev",
+    "install-server": "cd server && npm install",
+    "install-frontend": "cd frontend && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MuKuL-DiXiT/AstrapeRequires.git"
+  },
+  "author": "MuKuL DiXiT",
+  "license": "ISC"
+}
