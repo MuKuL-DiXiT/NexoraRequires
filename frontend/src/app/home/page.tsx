@@ -110,7 +110,7 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-16 sm:py-24 text-center">
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight text-black mb-6">
-            a s t r a p e
+            n e x o r a
             <br />
             R E Q U I R E S
           </h1>
