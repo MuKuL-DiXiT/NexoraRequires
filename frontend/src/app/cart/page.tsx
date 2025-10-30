@@ -5,6 +5,18 @@ import { useUserStore } from '../../stores/userStore';
 import Link from 'next/link';
 
 export default function CartPage() {
+  type CartLine = {
+    _id?: string;
+    quantity?: number;
+    item?: {
+      _id?: string;
+      name?: string;
+      price?: number;
+      category?: string;
+      description?: string;
+    };
+  };
+
   const {
     cart,
     isLoading,
@@ -28,7 +40,8 @@ export default function CartPage() {
     if (newQuantity < 1) return;
     try {
       await updateCartItem(itemId, newQuantity);
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       alert('Failed to update item quantity');
     }
   };
@@ -36,7 +49,8 @@ export default function CartPage() {
   const handleRemoveItem = async (itemId: string) => {
     try {
       await removeFromCart(itemId);
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       alert('Failed to remove item from cart');
     }
   };
@@ -45,7 +59,8 @@ export default function CartPage() {
     if (window.confirm('Are you sure you want to clear your cart?')) {
       try {
         await clearCart();
-      } catch (error) {
+      } catch (err) {
+        console.error(err);
         alert('Failed to clear cart');
       }
     }
@@ -73,7 +88,7 @@ export default function CartPage() {
       lines.push('Receipt - AstrapeRequires');
       lines.push('Date: ' + new Date().toLocaleString());
       lines.push('');
-      cartItems.forEach((ci: any, idx: number) => {
+      cartItems.forEach((ci: CartLine, idx: number) => {
         const name = ci.item?.name || 'Item';
         const qty = ci.quantity || 1;
         const price = Number(ci.item?.price || 0);

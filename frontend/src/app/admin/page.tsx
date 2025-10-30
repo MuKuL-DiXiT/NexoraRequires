@@ -73,7 +73,8 @@ export default function AdminPage() {
         const error = await response.json();
         alert(error.message || 'Failed to create item');
       }
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
       alert('Error creating item');
     } finally {
       setLoading(false);
@@ -98,7 +99,8 @@ export default function AdminPage() {
         } else {
           alert('Failed to delete item');
         }
-      } catch (error) {
+      } catch (err) {
+        console.error(err);
         alert('Error deleting item');
       }
     }

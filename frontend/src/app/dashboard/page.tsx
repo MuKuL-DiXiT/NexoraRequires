@@ -5,7 +5,7 @@ import { useCartStore } from '../../stores/cartStore';
 import Link from 'next/link';
 
 export default function Dashboard() {
-  const { user, isLoggedIn, clearUser } = useUserStore();
+  const { user, clearUser } = useUserStore();
   const { getCartItemsCount } = useCartStore();
   const [loading, setLoading] = useState(true);
 
