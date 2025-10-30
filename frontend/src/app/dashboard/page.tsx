@@ -81,9 +81,9 @@ export default function Dashboard() {
           <div className="flex justify-between items-center py-6">
             <Link href="/" className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-black rounded flex items-center justify-center">
-                <span className="text-white font-bold text-sm">A</span>
+                <span className="text-white font-bold text-sm">N</span>
               </div>
-              <span className="text-xl font-medium text-black tracking-tight hidden md:inline">AstrapeRequires</span>
+              <span className="text-xl font-medium text-black tracking-tight hidden md:inline">NexoraRequires</span>
               <span className="text-xl font-medium text-black tracking-tight md:hidden">AR</span>
             </Link>
             <div className="flex items-center space-x-6">
