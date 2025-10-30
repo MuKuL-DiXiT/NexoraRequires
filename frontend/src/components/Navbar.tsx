@@ -12,9 +12,9 @@ export default function Navbar() {
       <nav className="flex justify-between items-center px-4 sm:px-8 py-6 bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-10">
         <Link href="/" className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-black rounded flex items-center justify-center">
-            <span className="text-white font-bold text-sm">A</span>
+            <span className="text-white font-bold text-sm">N</span>
           </div>
-          <span className="text-xl font-medium text-black tracking-tight">AstrapeRequires</span>
+          <span className="text-xl font-medium text-black tracking-tight">NexoraRequires</span>
         </Link>
         
         {/* Desktop Navigation */}
