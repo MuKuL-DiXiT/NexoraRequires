@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCartStore } from '../../stores/cartStore';
 import { useUserStore } from '../../stores/userStore';
 import Link from 'next/link';
@@ -51,6 +51,65 @@ export default function CartPage() {
     }
   };
 
+  // Local UI state for checkout and toast
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const showToast = (msg: string, ms = 4000) => {
+    setToastMessage(msg);
+    window.setTimeout(() => setToastMessage(null), ms);
+  };
+
+  const handleCheckout = async () => {
+    if (cartItems.length === 0) return;
+    try {
+      setCheckoutLoading(true);
+
+      // simulate processing delay
+      await new Promise((res) => setTimeout(res, 900));
+
+      // Build a simple receipt text
+      const lines: string[] = [];
+      lines.push('Receipt - AstrapeRequires');
+      lines.push('Date: ' + new Date().toLocaleString());
+      lines.push('');
+      cartItems.forEach((ci: any, idx: number) => {
+        const name = ci.item?.name || 'Item';
+        const qty = ci.quantity || 1;
+        const price = Number(ci.item?.price || 0);
+        lines.push(`${idx + 1}. ${name} — ${qty} x $${price} = $${(qty * price).toFixed(2)}`);
+      });
+      lines.push('');
+      lines.push(`Total: $${total}`);
+
+      const receiptText = lines.join('\n');
+
+      // Show toast to user about download
+      showToast('Preparing receipt PDF for download...');
+
+      // Create a blob and trigger download (simulate PDF by naming .pdf)
+      const blob = new Blob([receiptText], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `receipt_${Date.now()}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      // Clear the cart after download
+      await clearCart();
+
+      showToast('Receipt downloaded — your cart was cleared.');
+    } catch (err) {
+      console.error(err);
+      showToast('Checkout failed. Please try again.');
+    } finally {
+      setCheckoutLoading(false);
+    }
+  };
+
   if (!user) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
@@ -85,6 +144,11 @@ export default function CartPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      {toastMessage && (
+        <div className="fixed right-4 bottom-6 z-50">
+          <div className="bg-black text-white px-4 py-2 rounded shadow">{toastMessage}</div>
+        </div>
+      )}
       {/* Header */}
       <div className="bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
@@ -220,10 +284,18 @@ export default function CartPage() {
                 </div>
                 
                 <button
-                  disabled={cartItems.length === 0}
+                  onClick={handleCheckout}
+                  disabled={cartItems.length === 0 || checkoutLoading}
                   className="w-full mt-8 px-6 py-3 bg-black text-white font-medium text-sm uppercase tracking-wider hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  Proceed to Checkout
+                  {checkoutLoading ? (
+                    <span className="flex items-center justify-center">
+                      <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2 inline-block"></span>
+                      Processing...
+                    </span>
+                  ) : (
+                    'Proceed to Checkout'
+                  )}
                 </button>
                 
                 <Link
