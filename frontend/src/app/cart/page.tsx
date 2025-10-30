@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
+import { jsPDF } from 'jspdf';
 import { useCartStore } from '../../stores/cartStore';
 import { useUserStore } from '../../stores/userStore';
 import Link from 'next/link';
@@ -102,16 +103,36 @@ export default function CartPage() {
       // Show toast to user about download
       showToast('Preparing receipt PDF for download...');
 
-      // Create a blob and trigger download (simulate PDF by naming .pdf)
-      const blob = new Blob([receiptText], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `receipt_${Date.now()}.pdf`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
+      // Generate a proper PDF using jsPDF so PDF readers can open it
+      try {
+        const doc = new jsPDF();
+        // simple layout: write each line, add pages if needed
+        const lineHeight = 8;
+        let y = 14;
+        doc.setFontSize(12);
+        lines.forEach((ln) => {
+          doc.text(String(ln), 12, y);
+          y += lineHeight;
+          if (y > doc.internal.pageSize.getHeight() - 16) {
+            doc.addPage();
+            y = 14;
+          }
+        });
+
+        doc.save(`receipt_${Date.now()}.pdf`);
+      } catch (pdfErr) {
+        console.error('PDF generation failed:', pdfErr);
+        // fallback to plain-text download if jsPDF fails
+        const blob = new Blob([receiptText], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `receipt_${Date.now()}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
 
       // Clear the cart after download
       await clearCart();

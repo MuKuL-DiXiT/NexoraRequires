@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useCartStore } from '../../stores/cartStore';
 import { useUserStore } from '../../stores/userStore';
+import Navbar from '../../components/Navbar';
 
 interface Item {
   _id: string;
@@ -220,6 +221,7 @@ export default function ItemsPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Navbar />
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-12">
         <div className="flex items-center justify-between mb-12">
           <h1 className="text-3xl md:text-4xl font-light text-black tracking-tight">
